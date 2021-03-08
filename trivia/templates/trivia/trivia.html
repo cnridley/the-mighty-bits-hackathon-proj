@@ -30,10 +30,7 @@
 {{ block.super }}
 <script type="text/javascript">
 
-//Empty Array to store markers
-    let markers = [];
-
-//Default map location
+    //Default map location
     function initMap() {
         const dublin = { lat: 53.35001680243868, lng: -6.262019153232362 };
         const map = new google.maps.Map(document.getElementById("map"), {
@@ -51,7 +48,7 @@
     const labels = "ABCDEFGHIJKLMNOPQRSTUV";
     let labelIndex = 0;
 
-//Answer 1 location St Stephens Green
+    //Answer 1 location St Stephens Green
     document.getElementById("q1-btn").addEventListener("click", mapStephensGreen);
 
     function mapStephensGreen() {
@@ -73,7 +70,7 @@
         map.setCenter(marker.getPosition());
         window.setTimeout(function() {map.setZoom(pos);},3000);
     };
-//Answer 2 location Trinity College
+    //Answer 2 location Trinity College
     document.getElementById("q2-btn").addEventListener("click", mapTrinityCollege);
     
     function mapTrinityCollege() {
@@ -94,7 +91,7 @@
         map.setCenter(marker.getPosition());
         window.setTimeout(function() {map.setZoom(pos);},3000);
     };
-//Answer 3 location Ha'penny Bridge
+    //Answer 3 location Ha'penny Bridge
     document.getElementById("q3-btn").addEventListener("click", mapPennyBridge);
 
     function mapPennyBridge() {
@@ -115,7 +112,7 @@
         map.setCenter(marker.getPosition());
         window.setTimeout(function() {map.setZoom(pos);},3000);
     };
-//Answer 4 location Temple Bar
+    //Answer 4 location Temple Bar
     document.getElementById("q4-btn").addEventListener("click", mapTempleBar);
 
     function mapTempleBar() {
@@ -136,7 +133,7 @@
         map.setCenter(marker.getPosition());
         window.setTimeout(function() {map.setZoom(pos);},3000);
     };
-//Answer 5 location Dublin Castle
+    //Answer 5 location Dublin Castle
     document.getElementById("q5-btn").addEventListener("click", mapDublinCastle);
 
     function mapDublinCastle() {
@@ -157,7 +154,7 @@
         map.setCenter(marker.getPosition());
         window.setTimeout(function() {map.setZoom(pos);},3000);
     };
-//Answer 6 location St Patricks Cathedral
+    //Answer 6 location St Patricks Cathedral
     document.getElementById("q6-btn").addEventListener("click", mapPatsCath);
 
     function mapPatsCath() {
@@ -178,7 +175,7 @@
         map.setCenter(marker.getPosition());
         window.setTimeout(function() {map.setZoom(pos);},3000);
     };
-//Answer 7 location Guinness Storehouse
+    //Answer 7 location Guinness Storehouse
     document.getElementById("q7-btn").addEventListener("click", mapGuinnStore);
 
     function mapGuinnStore() {
@@ -200,7 +197,7 @@
         window.setTimeout(function() {map.setZoom(pos);},3000);
     };
 
-//Answer 8 location The Clarence Hotel
+    //Answer 8 location The Clarence Hotel
     document.getElementById("q8-btn").addEventListener("click", mapClarenceHotel);
 
     function mapClarenceHotel() {
@@ -221,7 +218,7 @@
         map.setCenter(marker.getPosition());
         window.setTimeout(function() {map.setZoom(pos);},3000);
     };
-//Answer 9 location Thomas Street
+    //Answer 9 location Thomas Street
     document.getElementById("q9-btn").addEventListener("click", mapThomasStreet);
 
     function mapThomasStreet() {
@@ -242,6 +239,41 @@
         map.setCenter(marker.getPosition());
         window.setTimeout(function() {map.setZoom(pos);},3000);
     };
+    
+    //End game map
+    document.getElementById("display-map").addEventListener("click", endGameMap);
+
+    function endGameMap() {
+    const endMap = new google.maps.Map(document.getElementById("end-map"), {
+        zoom: 14,
+        center: {
+            lat: 53.34011580223951,
+            lng: -6.25841761384006 
+        }
+    });
+    let labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let allLocations = [
+        { lat: 53.336989909757534, lng: -6.260008930684645 }, //Stephens Green
+        { lat: 53.34373583273199, lng: -6.254568919628764 }, //Trinity College
+        { lat: 53.34636712861372, lng: -6.262660912822005 }, //Penny Bridge
+        { lat: 53.34492482071045, lng: -6.267571428565106 }, // Temple Bar
+        { lat: 53.34295013374614, lng: -6.267144087688027 }, //Dublin Castle
+        { lat: 53.33968193273843, lng: -6.270757869836692 }, //Pats Cathedral 
+        { lat: 53.34213811762754, lng: -6.286056642851632 }, //Guinness Storehouse
+        { lat: 53.34539169124294, lng: -6.266855052136041 }, //Clarence Hotel
+        { lat: 53.3430123, lng: -6.2838711 } //Thomas Street
+    ];
+    let markers = allLocations.map(function (location, i) {
+        return new google.maps.Marker({
+            position: location,
+            label: labels[i % labels.length]
+        });
+    });
+    new MarkerClusterer(endMap, markers, {
+        imagePath:
+            "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+    });
+}
     
 </script>
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
