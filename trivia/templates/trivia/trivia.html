@@ -29,7 +29,9 @@
 {% block postloadjs %}
 {{ block.super }}
 <script type="text/javascript">
-
+    $(document).ready(function(){
+        endGameMap()
+    })
     //Default map location
     function initMap() {
         const dublin = { lat: 53.35001680243868, lng: -6.262019153232362 };
